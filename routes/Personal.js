@@ -3,8 +3,8 @@ import { PersonalPut,PersonalPost, PersonalGet } from "../controllers/Personal.j
 const router = express.Router();
 
 router.post("/details", PersonalPost);
-router.put("/details", PersonalPut);
-router.get("/details", PersonalGet);
+router.put("/details/:uid", PersonalPut);
+router.get("/details/:uid", PersonalGet);
 
 
 export default router

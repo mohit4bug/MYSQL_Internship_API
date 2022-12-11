@@ -11,16 +11,37 @@ export const SkillsPost = (req, res) => {
 }
 
 export const SkillsPut = (req, res) => {
-    const skills = JSON.stringify(req.body.skills)
-    const q = "UPDATE skills SET `skills` = ? WHERE `uid` = ?";
-    const uid = req.body.uid;
+    const uid = req.params.uid;
 
-    const values = [skills];
-    db.query(q, [...values, uid], (err, data) => {
+    const q = "SELECT * FROM skills WHERE uid = (?)";
+    const values = [uid];
 
+    db.query(q, [values], (err, data) => {
         if (err) return res.json(err);
-        return res.status(200).json("skills successfully updated");
+        if (data.length > 0) {
+            const skills = JSON.stringify(req.body.skills)
+            const q = "UPDATE skills SET `skills` = ? WHERE `uid` = ?";
+
+            const values = [skills];
+            db.query(q, [...values, uid], (err, data) => {
+
+                if (err) return res.json(err);
+                return res.status(200).json("skills successfully updated");
+            })
+        }
+        else {
+            return res.status(404).json("user details not found");
+        }
     })
 }
 
-export const SKillsGet = (req, res) => {}
+export const SKillsGet = (req, res) => {
+    const q = "SELECT * FROM skills WHERE uid = (?)";
+    const values = [req.params.uid];
+    db.query(q, [values], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length > 0) return res.status(200).json(JSON.parse(data[0].skills));
+        else return res.status(404).json("user details not found");
+
+    })
+}

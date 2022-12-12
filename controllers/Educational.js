@@ -2,10 +2,10 @@ import e from "express"
 import { db } from "../index.js"
 
 export const EducationalPost = (req, res) => {
-    let q = "INSERT INTO educational (`gradEduStatus`,`gradStartYear` ,`gradEndYear`,`gradCourse` ,`gradSpecialization`,`gradDepartment`,`gradPerformance`,"
-    q = q + "`postGradEduStatus`,`postGradStartYear`,`postGradEndYear`,`postGradCourse` ,`postGradSpecialization`,`postGradDepartment`,`postGradPerformance`,"
-    q = q + "`seniorSecondaryStream`,`seniorSecondarySubject`,`seniorSecondarySchoolName`,`seniorSecondaryPercentage`,`seniorSecondaryBoard`,`seniorSecondaryMedium`,"
-    q = q + "`secondarySchoolName`,`secondaryPercentage`,`secondaryBoard`,`secondaryMedium`,`uid`) VALUES (?)";
+    let q = "INSERT INTO educational (`gradEduStatus`,`gradStartYear` ,`gradEndYear`,`gradCourse` ,`gradSpecialization`,`gradDepartment`,`gradPerformance`, \
+            `postGradEduStatus`,`postGradStartYear`,`postGradEndYear`,`postGradCourse` ,`postGradSpecialization`,`postGradDepartment`,`postGradPerformance`,\
+            `seniorSecondaryStream`,`seniorSecondarySubject`,`seniorSecondarySchoolName`,`seniorSecondaryPercentage`,`seniorSecondaryBoard`,`seniorSecondaryMedium`,\
+            `secondarySchoolName`,`secondaryPercentage`,`secondaryBoard`,`secondaryMedium`,`uid`) VALUES (?)";
 
     const values = [
         req.body.gradEduStatus,
@@ -43,6 +43,10 @@ export const EducationalPost = (req, res) => {
 }
 
 
+
+
+
+
 export const EducationalPut = (req, res) => {
     const uid = req.params.uid;
 
@@ -53,10 +57,10 @@ export const EducationalPut = (req, res) => {
         if (err) return res.json(err);
         if (data.length > 0) {
 
-            let q = "UPDATE educational SET `gradEduStatus` = ?,`gradStartYear` = ?,`gradEndYear` = ?,`gradCourse` = ?,`gradSpecialization` = ?,`gradDepartment` = ?,`gradPerformance` = ?,"
-            q = q + "`postGradEduStatus` = ?,`postGradStartYear` = ?,`postGradEndYear` = ?,`postGradCourse` = ?,`postGradSpecialization` = ?,`postGradDepartment` = ?,`postGradPerformance` = ?,"
-            q = q + "`seniorSecondaryStream` = ?,`seniorSecondarySubject` = ?,`seniorSecondarySchoolName` = ?,`seniorSecondaryPercentage` = ?,`seniorSecondaryBoard` = ?,`seniorSecondaryMedium` = ?,"
-            q = q + "`secondarySchoolName` = ?,`secondaryPercentage` = ?,`secondaryBoard` = ?,`secondaryMedium` = ? WHERE uid = ?";
+        let q = "UPDATE educational SET `gradEduStatus` = ?,`gradStartYear` = ?,`gradEndYear` = ?,`gradCourse` = ?,`gradSpecialization` = ?,`gradDepartment` = ?,`gradPerformance` = ?, \
+                `postGradEduStatus` = ?,`postGradStartYear` = ?,`postGradEndYear` = ?,`postGradCourse` = ?,`postGradSpecialization` = ?,`postGradDepartment` = ?,`postGradPerformance` = ?, \
+                `seniorSecondaryStream` = ?,`seniorSecondarySubject` = ?,`seniorSecondarySchoolName` = ?,`seniorSecondaryPercentage` = ?,`seniorSecondaryBoard` = ?,`seniorSecondaryMedium` = ?, \
+                `secondarySchoolName` = ?,`secondaryPercentage` = ?,`secondaryBoard` = ?,`secondaryMedium` = ? WHERE uid = ?";
 
             const values = [
                 req.body.gradEduStatus,
@@ -95,6 +99,10 @@ export const EducationalPut = (req, res) => {
         }
     })
 }
+
+
+
+
 
 
 export const EducationalGet = (req, res) => {

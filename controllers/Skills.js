@@ -29,9 +29,8 @@ export const SkillsPut = (req, res) => {
                 return res.status(200).json("skills successfully updated");
             })
         }
-        else {
-            return res.status(404).json("user details not found");
-        }
+        else return res.status(404).json("user details not found");
+        
     })
 }
 
